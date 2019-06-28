@@ -3,12 +3,13 @@ import processing.core.PConstants._
 import scala.math._
 
 object Main extends App {
-  override def main(args: Array[String]) = PApplet.runSketch(Array("Sketch"), Sketch);
+  override def main(args: Array[String]) =
+    PApplet.runSketch(Array("Sketch"), Sketch);
 }
 
 object Sketch extends PApplet {
   override def settings = size(1920, 1080)
-  
+
   override def setup = {
     noLoop
     noStroke
@@ -29,7 +30,7 @@ object Sketch extends PApplet {
 
     for {
       x <- 0.0 to dx + width by dx
-      y <- 0.0  to dy + height by dy
+      y <- 0.0 to dy + height by dy
     } {
       hexagon(pixels, x, y, r)
       hexagon(pixels, x + 0.5 * w, y + 1.5 * h, r)
@@ -44,7 +45,7 @@ object Sketch extends PApplet {
 
     val angle = TWO_PI.toDouble / 6.0
 
-    fill(pixels(min(y0 * width + x0, pixels.size -1)), 255.0f)
+    fill(pixels(min(y0 * width + x0, pixels.size - 1)), 255.0f)
 
     beginShape
 
@@ -60,10 +61,10 @@ object Sketch extends PApplet {
     endShape(CLOSE)
   }
 
-  def clamp(n: Int, minimum: Int, maximum: Int) = if ( n < minimum )
-    minimum
-  else
-    if ( n >= maximum )
+  def clamp(n: Int, minimum: Int, maximum: Int) =
+    if (n < minimum)
+      minimum
+    else if (n >= maximum)
       maximum
     else
       n
