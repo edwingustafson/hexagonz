@@ -19,8 +19,6 @@ object Sketch extends PApplet {
     noLoop
     noStroke
 
-    background(128)
-    
     val photo = loadImage(input)
     image(photo, 0, 0)
 
