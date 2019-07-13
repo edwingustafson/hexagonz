@@ -8,6 +8,9 @@ object Main extends App {
 }
 
 object Sketch extends PApplet {
+  implicit def float2Double(x: Float) = x.toDouble
+  implicit def double2Float(x: Double) = x.toFloat
+
   val input = "input.jpg"
 
   override def settings = {
@@ -53,17 +56,17 @@ object Sketch extends PApplet {
     val x0: Int = clamp(x.toInt, 0, width - 1)
     val y0: Int = clamp(y.toInt, 0, height - 1)
 
-    val angle = TWO_PI.toDouble / 6.0
+    val angle = TWO_PI / 6.0
 
-    fill(pixels(min(y0 * width + x0, pixels.size - 1)), opacity(x, y, fx, fy).toFloat)
+    fill(pixels(min(y0 * width + x0, pixels.size - 1)), opacity(x, y, fx, fy))
 
     beginShape
 
-    (0.0 to TWO_PI.toDouble by angle).foreach(a => {
+    (0.0 to TWO_PI by angle).foreach(a => {
       val sa = a + angle / 2.0
-      val sx = x.toDouble + cos(sa) * r
-      val sy = y.toDouble + sin(sa) * r
-      vertex(sx.toFloat, sy.toFloat)
+      val sx = x + cos(sa) * r
+      val sy = y + sin(sa) * r
+      vertex(sx, sy)
     })
 
     endShape(CLOSE)
