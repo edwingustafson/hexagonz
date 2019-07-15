@@ -23,7 +23,7 @@ object Sketch extends PApplet {
     noStroke
 
     val photo = loadImage(input)
-    image(photo, 0, 0)
+    image(photo, 0.0, 0.0)
 
     photo.loadPixels
     val pixels = photo.pixels
@@ -34,7 +34,7 @@ object Sketch extends PApplet {
     val w = dx
     val r = w / sqrt(3.0) + 1.0
     val h = r
-    val dy = 3 * r
+    val dy = 3.0 * r
 
     //  Focal point, hard-coded for now
 
@@ -77,7 +77,7 @@ object Sketch extends PApplet {
 
   /** Calculate opacity based on distance from focal point  */
   def opacity(x: Double, y: Double, fx: Double, fy: Double): Double = {
-    val distance = Math.sqrt(Math.pow(fx - x, 2) + Math.pow(fy - y, 2))
+    val distance = Math.sqrt(Math.pow(fx - x, 2.0) + Math.pow(fy - y, 2.0))
     clamp(0.25 * distance, 0.0, 255.0)
   }
 }
