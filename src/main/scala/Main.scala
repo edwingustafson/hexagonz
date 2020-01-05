@@ -3,22 +3,22 @@ import processing.core.PConstants._
 import scala.math._
 
 object Main extends App {
-  override def main(args: Array[String]) =
+  override def main(args: Array[String]): Unit =
     PApplet.runSketch(Array("Sketch"), Sketch);
 }
 
 object Sketch extends PApplet {
-  implicit def float2Double(x: Float) = x.toDouble
-  implicit def double2Float(x: Double) = x.toFloat
+  implicit def float2Double(x: Float): Double = x.toDouble
+  implicit def double2Float(x: Double): Float = x.toFloat
 
   val input = "input.jpg"
 
-  override def settings = {
+  override def settings: Unit = {
     val photo = loadImage(input)
     size(photo.width, photo.height)
   }
 
-  override def setup = {
+  override def setup: Unit = {
     noLoop
     noStroke
 
@@ -52,13 +52,13 @@ object Sketch extends PApplet {
     save("output.png")
   }
 
-  def hexagon(pixels: Array[Int], x: Double, y: Double, r: Double, fx: Double, fy: Double) = {
+  def hexagon(pixels: Array[Int], x: Double, y: Double, r: Double, fx: Double, fy: Double): Unit = {
     val x0: Int = clamp(x.toInt, 0, width - 1)
     val y0: Int = clamp(y.toInt, 0, height - 1)
 
     val angle = TWO_PI / 6.0
 
-    fill(pixels(min(y0 * width + x0, pixels.size - 1)), opacity(x, y, fx, fy))
+    fill(pixels(min(y0 * width + x0, pixels.size - 1)))
 
     beginShape
 
