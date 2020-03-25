@@ -1,6 +1,6 @@
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.1"
 
-name := "ps"
+name := "hexagonz"
 organization := "com.edwingustafson"
 version := "1.0"
 
