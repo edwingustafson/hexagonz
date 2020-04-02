@@ -10,6 +10,9 @@ object Sketch extends PApplet {
   implicit def float2Double(x: Float): Double = x.toDouble
   implicit def double2Float(x: Double): Float = x.toFloat
 
+  implicit def bigDecimal2Double(x: BigDecimal): Double = x.doubleValue
+  implicit def double2BigDecimal(x: Double): BigDecimal = BigDecimal(x)
+
   val input = "input.jpg"
 
   override def settings: Unit = {
@@ -41,8 +44,8 @@ object Sketch extends PApplet {
     val fy = 560.0
 
     for {
-      x <- BigDecimal(0.0) to BigDecimal(dx + width) by BigDecimal(dx)
-      y <- BigDecimal(0.0) to BigDecimal(dy + height) by BigDecimal(dy)
+      x <- 0.0 to dx + width by dx
+      y <- 0.0 to dy + height by dy
     } {
       hexagon(pixels, x.doubleValue, y.doubleValue, r, fx, fy)
       hexagon(pixels, x.doubleValue + 0.5 * w, y.doubleValue + 1.5 * h, r, fx, fy)
@@ -61,7 +64,7 @@ object Sketch extends PApplet {
 
     beginShape
 
-    (BigDecimal(0.0) to BigDecimal(TWO_PI) by BigDecimal(angle)).foreach(a => {
+    (0.0 to TWO_PI by angle).foreach(a => {
       val sa = a + angle / 2.0
       val sx = x + cos(sa.doubleValue) * r
       val sy = y + sin(sa.doubleValue) * r
