@@ -3,7 +3,6 @@ import processing.core.PConstants._
 import scala.math._
 
 object Main extends App {
-  override def main(args: Array[String]): Unit =
     PApplet.runSketch(Array("Sketch"), Sketch);
 }
 
@@ -30,7 +29,7 @@ object Sketch extends PApplet {
 
     //  Point-topped hexagonal grid
 
-    val dx = 15.0
+    val dx = 40.0
     val w = dx
     val r = w / sqrt(3.0) + 1.0
     val h = r
@@ -42,11 +41,11 @@ object Sketch extends PApplet {
     val fy = 560.0
 
     for {
-      x <- 0.0 to dx + width by dx
-      y <- 0.0 to dy + height by dy
+      x <- BigDecimal(0.0) to BigDecimal(dx + width) by BigDecimal(dx)
+      y <- BigDecimal(0.0) to BigDecimal(dy + height) by BigDecimal(dy)
     } {
-      hexagon(pixels, x, y, r, fx, fy)
-      hexagon(pixels, x + 0.5 * w, y + 1.5 * h, r, fx, fy)
+      hexagon(pixels, x.doubleValue, y.doubleValue, r, fx, fy)
+      hexagon(pixels, x.doubleValue + 0.5 * w, y.doubleValue + 1.5 * h, r, fx, fy)
     }
 
     save("output.png")
@@ -62,10 +61,10 @@ object Sketch extends PApplet {
 
     beginShape
 
-    (0.0 to TWO_PI by angle).foreach(a => {
+    (BigDecimal(0.0) to BigDecimal(TWO_PI) by BigDecimal(angle)).foreach(a => {
       val sa = a + angle / 2.0
-      val sx = x + cos(sa) * r
-      val sy = y + sin(sa) * r
+      val sx = x + cos(sa.doubleValue) * r
+      val sy = y + sin(sa.doubleValue) * r
       vertex(sx, sy)
     })
 
