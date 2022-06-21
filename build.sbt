@@ -1,4 +1,4 @@
-scalaVersion := "2.13.3"
+scalaVersion := "2.13.8"
 
 name := "hexagonz"
 organization := "com.edwingustafson"
